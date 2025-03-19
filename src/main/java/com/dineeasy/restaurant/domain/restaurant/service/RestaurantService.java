@@ -1,7 +1,8 @@
-package com.dineeasy.restaurant.domain.service;
+package com.dineeasy.restaurant.domain.restaurant.service;
 
 
-import com.dineeasy.restaurant.domain.repository.IRestaurantRepository;
+import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
+import com.dineeasy.restaurant.domain.restaurant.repository.IRestaurantRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,5 +13,8 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
+    public Restaurant createRestaurant(Restaurant restaurant){
+
+    }
 
 }

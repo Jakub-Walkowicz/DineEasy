@@ -1,5 +1,6 @@
-package com.dineeasy.restaurant.domain.entity;
+package com.dineeasy.restaurant.domain.menuitem.entity;
 
+import com.dineeasy.restaurant.domain.menu.entity.Menu;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,6 +1,6 @@
 package com.dineeasy.restaurant.api;
 
-import com.dineeasy.restaurant.domain.entity.Restaurant;
+import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

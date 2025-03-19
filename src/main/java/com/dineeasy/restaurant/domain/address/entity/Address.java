@@ -1,4 +1,4 @@
-package com.dineeasy.restaurant.domain.entity;
+package com.dineeasy.restaurant.domain.address.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

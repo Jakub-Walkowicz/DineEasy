@@ -1,5 +1,9 @@
-package com.dineeasy.restaurant.domain.entity;
+package com.dineeasy.restaurant.domain.restaurant.entity;
 
+import com.dineeasy.restaurant.domain.address.entity.Address;
+import com.dineeasy.restaurant.domain.businesshours.entity.BusinessHours;
+import com.dineeasy.restaurant.domain.diningtable.entity.DiningTable;
+import com.dineeasy.restaurant.domain.menu.entity.Menu;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

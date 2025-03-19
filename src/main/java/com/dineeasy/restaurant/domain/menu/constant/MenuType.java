@@ -1,4 +1,4 @@
-package com.dineeasy.restaurant.domain.constant;
+package com.dineeasy.restaurant.domain.menu.constant;
 
 public enum MenuType {
     NORMAL,

@@ -3,7 +3,9 @@ package com.dineeasy.restaurant.domain.businesshours.entity;
 import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -11,6 +13,8 @@ import java.time.LocalTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Table(name = "business_hours")
 public class BusinessHours {
     @Id

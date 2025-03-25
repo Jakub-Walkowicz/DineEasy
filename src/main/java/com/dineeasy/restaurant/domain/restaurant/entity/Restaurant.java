@@ -69,7 +69,6 @@ public class Restaurant {
 
     public void removeTable(DiningTable diningTable){
         this.diningTables.remove(diningTable);
-        diningTable.setRestaurant(null);
     }
 
     public void addMenu(Menu menu){
@@ -79,7 +78,11 @@ public class Restaurant {
 
     public void removeMenu(Menu menu){
         this.menus.remove(menu);
-        menu.setRestaurant(null);
+    }
+
+    public void addBusinessHour(BusinessHours businessHours){
+        this.businessHours.add(businessHours);
+        businessHours.setRestaurant(this);
     }
 
     public void calculateNewRating(Double rating){
@@ -93,8 +96,8 @@ public class Restaurant {
 
     @PrePersist
     @PreUpdate
-    public void updateTimestamp(){
-        this.setModifyDateTime(LocalDateTime.now());
+    protected void updateTimestamp(){
+        this.modifyDateTime = LocalDateTime.now();
     }
 
 

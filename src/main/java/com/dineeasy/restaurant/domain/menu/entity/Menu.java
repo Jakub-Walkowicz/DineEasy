@@ -20,12 +20,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "menu",
-        uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndRestaurant", columnNames = {"name", "restaurant_id"})
-        },
-        indexes = {
-                @Index(columnList = "name")
-        }
-    )
+    uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndRestaurant", columnNames = {"name", "restaurant_id"})
+    },
+    indexes = {
+        @Index(columnList = "name")
+    }
+)
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

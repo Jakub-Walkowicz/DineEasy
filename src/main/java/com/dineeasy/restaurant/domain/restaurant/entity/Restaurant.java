@@ -1,9 +1,9 @@
 package com.dineeasy.restaurant.domain.restaurant.entity;
 
 import com.dineeasy.restaurant.domain.address.entity.Address;
-import com.dineeasy.restaurant.domain.businesshours.entity.BusinessHours;
 import com.dineeasy.restaurant.domain.diningtable.entity.DiningTable;
 import com.dineeasy.restaurant.domain.menu.entity.Menu;
+import com.dineeasy.restaurant.domain.restaurant.validation.OpenBeforeClose;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ import java.util.Set;
                 @Index(columnList = "name")
     }
 )
+@OpenBeforeClose
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +53,10 @@ public class Restaurant {
     @Pattern(regexp = "^\\d{9,11}$", message = "Phone number must be between 9 and 11 digits")
     @Column(length = 11)
     private String phoneNumber;
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BusinessHours> businessHours = new HashSet<>();
+    @NotNull(message = "Open time is required")
+    private LocalTime openTime;
+    @NotNull(message = "Close time is required")
+    private LocalTime closeTime;
     @Email(message = "Email must be valid")
     @Column(length = 100)
     private String email;
@@ -78,11 +82,6 @@ public class Restaurant {
 
     public void removeMenu(Menu menu){
         this.menus.remove(menu);
-    }
-
-    public void addBusinessHour(BusinessHours businessHours){
-        this.businessHours.add(businessHours);
-        businessHours.setRestaurant(this);
     }
 
     public void calculateNewRating(Double rating){

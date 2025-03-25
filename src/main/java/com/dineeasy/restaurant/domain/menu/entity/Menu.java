@@ -5,6 +5,7 @@ import com.dineeasy.restaurant.domain.menu.constant.MenuType;
 import com.dineeasy.restaurant.domain.menuitem.entity.MenuItem;
 import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.HashSet;
@@ -15,11 +16,18 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "menu")
+@Table(name = "menu", uniqueConstraints =
+        {@UniqueConstraint(name = "UniqueNameAndRestaurant", columnNames = {"name", "restaurant"})},
+        indexes = {
+                @Index(columnList = "name")
+        })
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Column(length = 100, nullable = false)
+    private String name;
     @OneToMany(mappedBy = "menu")
     private Set<MenuItem> items = new HashSet<>();
     @Enumerated(EnumType.STRING)

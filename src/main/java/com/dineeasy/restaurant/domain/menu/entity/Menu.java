@@ -20,11 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "menu",
-    uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndRestaurant", columnNames = {"name", "restaurant_id"})
-    },
-    indexes = {
-        @Index(columnList = "name")
-    }
+    uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndRestaurant", columnNames = {"name", "restaurant_id"})},
+    indexes = {@Index(columnList = "name")}
 )
 public class Menu {
     @Id
@@ -56,7 +53,7 @@ public class Menu {
         item.setMenu(this);
     }
 
-    public void removeItem(Long item){
+    public void removeItem(MenuItem item){
         this.items.remove(item);
     }
 

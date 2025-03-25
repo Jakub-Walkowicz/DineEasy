@@ -23,11 +23,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {
-        @UniqueConstraint(name = "UniqueNameAndAddress", columnNames = {"name", "address_id"})
-    },
-    indexes = {
-                @Index(columnList = "name")
-    }
+    @UniqueConstraint(name = "UniqueNameAndAddress", columnNames = {"name", "address_id"})},
+    indexes = {@Index(columnList = "name")}
 )
 @OpenBeforeClose
 public class Restaurant {

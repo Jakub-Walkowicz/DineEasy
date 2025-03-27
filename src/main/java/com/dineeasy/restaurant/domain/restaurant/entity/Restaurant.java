@@ -33,6 +33,7 @@ public class Restaurant {
     private Long id;
     @NotBlank(message = "Restaurant name must not be blank")
     @Column(length = 100, nullable = false)
+    @Size(max = 100)
     private String name;
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Menu> menus = new HashSet<>();

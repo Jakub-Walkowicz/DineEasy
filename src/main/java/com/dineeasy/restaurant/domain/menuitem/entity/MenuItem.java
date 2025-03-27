@@ -25,6 +25,7 @@ public class MenuItem {
     private Long id;
     @NotBlank(message = "Menu name must not be blank")
     @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+    @Column(length = 100, nullable = false)
     private String name;
     @NotNull(message = "Price is required")
     @Positive(message = "Price must be greater than zero")

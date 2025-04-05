@@ -1,6 +1,6 @@
 package com.dineeasy.restaurant.domain.restaurant.entity;
 
-import com.dineeasy.restaurant.domain.address.entity.Address;
+import com.dineeasy.restaurant.domain.address.valueobject.Address;
 import com.dineeasy.restaurant.domain.diningtable.entity.DiningTable;
 import com.dineeasy.restaurant.domain.menu.entity.Menu;
 import com.dineeasy.restaurant.domain.restaurant.validation.OpenBeforeClose;
@@ -22,8 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "restaurant", uniqueConstraints = {
-    @UniqueConstraint(name = "UniqueNameAndAddress", columnNames = {"name", "address_id"})},
+@Table(name = "restaurant",
     indexes = {@Index(columnList = "name")}
 )
 @OpenBeforeClose
@@ -39,8 +38,7 @@ public class Restaurant {
     private Set<Menu> menus = new HashSet<>();
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DiningTable> diningTables = new HashSet<>();
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", nullable = false)
+    @Embedded
     @NotNull(message = "Restaurant address is required")
     private Address address;
     @Min(value = 0, message = "Rating number cannot be negative")
@@ -51,9 +49,7 @@ public class Restaurant {
     @Pattern(regexp = "^\\d{9,11}$", message = "Phone number must be between 9 and 11 digits")
     @Column(length = 11)
     private String phoneNumber;
-    @NotNull(message = "Open time is required")
     private LocalTime openTime;
-    @NotNull(message = "Close time is required")
     private LocalTime closeTime;
     @Email(message = "Email must be valid")
     @Column(length = 100)

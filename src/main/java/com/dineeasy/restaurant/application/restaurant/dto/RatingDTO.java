@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RatingDTO {
-    @DecimalMin("1.0")
-    @DecimalMax("5.0")
+    @DecimalMin(value = "0.0", message = "Rating cannot be less than 0")
+    @DecimalMax(value = "5.0", message = "Rating cannot exceed 5")
     private double rating;
 }

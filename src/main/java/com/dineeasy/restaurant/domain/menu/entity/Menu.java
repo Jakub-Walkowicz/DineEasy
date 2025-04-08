@@ -31,7 +31,7 @@ public class Menu {
     @Size(min = 2, max = 100, message = "Menu name must be between 2 and 100 characters")
     @Column(length = 100, nullable = false)
     private String name;
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "menu", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<MenuItem> items = new HashSet<>();
     @NotNull(message = "Menu type is required")
     @Enumerated(EnumType.STRING)

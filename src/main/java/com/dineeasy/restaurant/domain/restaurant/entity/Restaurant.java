@@ -34,16 +34,18 @@ public class Restaurant {
     @Column(length = 100, nullable = false)
     @Size(max = 100)
     private String name;
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            orphanRemoval = true)
     private Set<Menu> menus = new HashSet<>();
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            orphanRemoval = true)
     private Set<DiningTable> diningTables = new HashSet<>();
     @Embedded
     @NotNull(message = "Restaurant address is required")
     private Address address;
     @Min(value = 0, message = "Rating number cannot be negative")
     private Integer ratingNumber = 0;
-    @DecimalMin(value = "0.0", message = "Average rating cannot be negative")
+    @DecimalMin(value = "1.0", message = "Average rating cannot be negative")
     @DecimalMax(value = "5.0", message = "Average rating cannot exceed 5.0")
     private Double averageRating = null;
     @Pattern(regexp = "^\\d{9,11}$", message = "Phone number must be between 9 and 11 digits")
@@ -59,24 +61,6 @@ public class Restaurant {
     private String website;
     @Column(name = "modify_datetime")
     private LocalDateTime modifyDateTime;
-
-    public void addTable(DiningTable diningTable){
-        this.diningTables.add(diningTable);
-        diningTable.setRestaurant(this);
-    }
-
-    public void removeTable(DiningTable diningTable){
-        this.diningTables.remove(diningTable);
-    }
-
-    public void addMenu(Menu menu){
-        this.menus.add(menu);
-        menu.setRestaurant(this);
-    }
-
-    public void removeMenu(Menu menu){
-        this.menus.remove(menu);
-    }
 
     public void calculateNewRating(Double rating){
         if (ratingNumber == null) ratingNumber = 0;

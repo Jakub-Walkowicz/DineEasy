@@ -4,12 +4,11 @@ import com.dineeasy.restaurant.application.address.dto.AddressDTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Getter
 @Setter
-public class ResponseRestaurantDTO {
+public class RestaurantCreateDTO {
     private String name;
     private AddressDTO address;
     private String phoneNumber;
@@ -17,5 +16,4 @@ public class ResponseRestaurantDTO {
     private LocalTime closeTime;
     private String email;
     private String website;
-    private LocalDateTime modifyDateTime;
 }

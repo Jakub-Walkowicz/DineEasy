@@ -4,16 +4,11 @@ import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table(name = "dining_table")
 public class DiningTable {
@@ -26,3 +21,5 @@ public class DiningTable {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 }
+
+

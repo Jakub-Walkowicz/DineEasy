@@ -5,6 +5,7 @@ import com.dineeasy.restaurant.application.menu.MenuApplicationService;
 import com.dineeasy.restaurant.application.menu.dto.MenuCreateDTO;
 import com.dineeasy.restaurant.application.menu.dto.MenuResponseDTO;
 import com.dineeasy.restaurant.application.menu.dto.MenuResponseDetailsDTO;
+import com.dineeasy.restaurant.application.menu.dto.MenuUpdateDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +25,10 @@ public class MenuController {
         return menuApplicationService.createMenu(menuCreateDTO, restaurantId);
     }
 
-//    @PutMapping("/{menuId}")
-//    public MenuResponseDTO updateMenu(@RequestBody MenuUpdateDTO menuUpdateDTO, @PathVariable Long menuId){
-//
-//    }
+    @PutMapping("/{menuId}")
+    public MenuResponseDTO updateMenu(@RequestBody MenuUpdateDTO menuUpdateDTO, @PathVariable Long menuId){
+
+    }
 
     @GetMapping
     public Collection<MenuResponseDTO> getAllMenus(@PathVariable Long restaurantId){

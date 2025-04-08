@@ -3,15 +3,18 @@ package com.dineeasy.restaurant.application.menu;
 import com.dineeasy.restaurant.application.menu.dto.MenuCreateDTO;
 import com.dineeasy.restaurant.application.menu.dto.MenuResponseDTO;
 import com.dineeasy.restaurant.application.menu.dto.MenuResponseDetailsDTO;
+import com.dineeasy.restaurant.application.menu.dto.MenuUpdateDTO;
 import com.dineeasy.restaurant.application.menu.mapper.MenuMapper;
 import com.dineeasy.restaurant.domain.menu.entity.Menu;
 import com.dineeasy.restaurant.domain.menu.repository.MenuRepository;
+import com.dineeasy.restaurant.domain.menuitem.entity.MenuItem;
 import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import com.dineeasy.restaurant.domain.restaurant.repository.RestaurantRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,9 +45,15 @@ public class MenuApplicationService {
     }
 
 //    public MenuResponseDTO updateMenu(MenuUpdateDTO menuUpdateDTO, Long menuId){
-//        Menu menu = menuRepository.findById(menuId)
+//        Menu existingMenu = menuRepository.findById(menuId)
 //                .orElseThrow(() -> new IllegalStateException("Menu with id: " + menuId + " does not exist!"));
-//        Menu menu = menuMapper.toEntity(menuUpdateDTO);
+//        Set<MenuItem> existingItems = existingMenu.getItems();
+//        Menu updateMenu = menuMapper.toEntity(menuUpdateDTO);
+//        Set<MenuItem> updateItems = updateMenu.getItems();;
+
+//    TO DO
+//            TO DO
+//                    TO DO
 //    }
 
     public MenuResponseDetailsDTO getMenuDetails(Long menuId){

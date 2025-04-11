@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class MenuResponseDetailsDTO {
+    private Long id;
     private String name;
     private Set<MenuItemDTO> items;
     private MenuType menuType;

@@ -7,11 +7,9 @@ import com.dineeasy.restaurant.application.menu.dto.MenuUpdateDTO;
 import com.dineeasy.restaurant.application.menuitem.mapper.MenuItemMapper;
 import com.dineeasy.restaurant.domain.menu.entity.Menu;
 import org.mapstruct.Mapper;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring",
-        uses = {MenuItemMapper.class},
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+        uses = {MenuItemMapper.class}
 )
 public interface MenuMapper {
     Menu toEntity(MenuCreateDTO menuCreateDTO);

@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "menu_item",
-    uniqueConstraints = {@UniqueConstraint(name = "UniqueName", columnNames = {"name"})},
     indexes = {@Index(columnList = "name")}
 )
 public class MenuItem {

@@ -27,7 +27,12 @@ public class MenuController {
 
     @PutMapping("/{menuId}")
     public MenuResponseDTO updateMenu(@RequestBody MenuUpdateDTO menuUpdateDTO, @PathVariable Long menuId){
+        return menuApplicationService.updateMenu(menuUpdateDTO, menuId);
+    }
 
+    @DeleteMapping("/{menuId}/{menuItemId}")
+    public ResponseEntity<Void> deleteMenuItems(@PathVariable Long menuId, @PathVariable Long menuItemId){
+        return menuApplicationService.deleteMenuItem(menuId, menuItemId);
     }
 
     @GetMapping

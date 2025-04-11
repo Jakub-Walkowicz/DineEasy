@@ -11,11 +11,10 @@ import com.dineeasy.restaurant.domain.menuitem.entity.MenuItem;
 import com.dineeasy.restaurant.domain.restaurant.entity.Restaurant;
 import com.dineeasy.restaurant.domain.restaurant.repository.RestaurantRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,17 +43,38 @@ public class MenuApplicationService {
         return menuMapper.toDto(saved);
     }
 
-//    public MenuResponseDTO updateMenu(MenuUpdateDTO menuUpdateDTO, Long menuId){
-//        Menu existingMenu = menuRepository.findById(menuId)
-//                .orElseThrow(() -> new IllegalStateException("Menu with id: " + menuId + " does not exist!"));
-//        Set<MenuItem> existingItems = existingMenu.getItems();
-//        Menu updateMenu = menuMapper.toEntity(menuUpdateDTO);
-//        Set<MenuItem> updateItems = updateMenu.getItems();;
+    public MenuResponseDTO updateMenu(MenuUpdateDTO menuUpdateDTO, Long menuId){
+        Menu existingMenu = menuRepository.findById(menuId)
+                .orElseThrow(() -> new IllegalStateException("Menu with id: " + menuId + " does not exist!"));
+        Set<MenuItem> existingItems = existingMenu.getItems();
 
-//    TO DO
-//            TO DO
-//                    TO DO
-//    }
+        Menu updateMenu = menuMapper.toEntity(menuUpdateDTO);
+        System.out.println("ELOOOOOOOOOOOOOO");
+        System.out.println(updateMenu.getName());
+
+        if (updateMenu.getName() != null){
+            existingMenu.setName(updateMenu.getName());
+        }
+
+        if (updateMenu.getItems() != null){
+            Map<Long, MenuItem> existingItemsMap = existingItems.stream()
+                    .collect(Collectors.toMap(MenuItem::getId, Function.identity()));
+            Set<MenuItem> updateItems = updateMenu.getItems();
+
+            for (MenuItem updateItem : updateItems){
+                if (updateItem.getId() != null && existingItemsMap.containsKey(updateItem.getId())){
+                    MenuItem existingItem = existingItemsMap.get(updateItem.getId());
+                    existingItem.setName(updateItem.getName());
+                    existingItem.setPrice(updateItem.getPrice());
+                }
+                else if (updateItem.getId() == null){
+                    existingMenu.addItem(updateItem);
+                }
+            }
+        }
+        Menu savedMenu = menuRepository.save(existingMenu);
+        return menuMapper.toDto(savedMenu);
+    }
 
     public MenuResponseDetailsDTO getMenuDetails(Long menuId){
         Menu menu = menuRepository.findById(menuId)
